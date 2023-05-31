@@ -18,6 +18,7 @@ import {
 import { FontAwesome5 } from '@expo/vector-icons';
 import Carousel from 'react-native-snap-carousel';
 import TopPage from '../components/TopPage';
+import AddBtn from '../components/NewPoste';
 
 function ProductCard({ title, price, description, imageUri }) {
   return (
@@ -132,6 +133,7 @@ function AlphaZone() {
           <Heading mt={8} mb={6}>
             <Text>Nouveauté</Text>
           </Heading>
+          <AddBtn />
 
           <Carousel
             data={carouselItems}
