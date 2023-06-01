@@ -133,7 +133,7 @@ function AlphaZone() {
           <Heading mt={8} mb={6}>
             <Text>Nouveauté</Text>
           </Heading>
-          <AddBtn />
+          {/*<AddBtn />*/}
 
           <Carousel
             data={carouselItems}
