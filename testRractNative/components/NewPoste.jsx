@@ -1,25 +1,25 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Popover, Button, Input, FormControl, Box, IconButton, Alert } from "native-base";
 import { Ionicons } from '@expo/vector-icons';
 
 export default function AddBtn() {
-  //const btncheck = <Button mr={10}>Sauvegarder</Button>;
   const circleSharp = <Ionicons name="add-circle-sharp" size={24} />;
   const initialFocusRef = useRef(null);
-  const prixInputRef = useRef(null);
-  const descriptionInputRef = useRef(null);
+  //const prixInputRef = useRef(null);
+  //const descriptionInputRef = useRef(null);
+
+  const [nomInputValue, setNomInputValue] = useState("");
+  const [prixInputValue, setPrixInputValue] = useState("");
+  const [descriptionInputValue, setDescriptionInputValue] = useState("");
 
   const handleButtonClick = () => {
-    const nomInput = initialFocusRef.current?.value;
-    const prixInput = prixInputRef.current?.value;
-    const descriptionInput = descriptionInputRef.current?.value;
-
-    if (!nomInput /*&& !prixInput && !descriptionInput*/ ) {
-      console.log('Erreur : Tous les champs doivent être remplis');
+    if (nomInputValue.trim().length > 0) {
+      console.log("Texte ajouté dans le champ Nom :", nomInputValue);
+      console.log("Prix :", prixInputValue);
+      console.log("Description :", descriptionInputValue);
+    } else {
+      console.log("Le champ Nom est vide.");
     }
-      else if (nomInput /*&& prixInput && descriptionInput*/ ) {
-        console.log('Cela Fontionne :)');
-      }
   };
 
   return (
@@ -42,7 +42,12 @@ export default function AddBtn() {
               }}>
                 Nom
               </FormControl.Label>
-              <Input rounded="sm" fontSize="xs" ref={initialFocusRef} />
+              <Input
+                rounded="sm"
+                fontSize="xs"
+                onChangeText={(text) => setNomInputValue(text)}
+                value={nomInputValue}
+              />
             </FormControl>
             <FormControl mt="3">
               <FormControl.Label _text={{
@@ -51,7 +56,13 @@ export default function AddBtn() {
               }}>
                 Prix
               </FormControl.Label>
-              <Input rounded="sm" fontSize="xs" keyboardType="numeric" ref={prixInputRef} />
+              <Input
+                rounded="sm"
+                fontSize="xs"
+                keyboardType="numeric"
+                onChangeText={(text) => setPrixInputValue(text)}
+                value={prixInputValue}
+              />
             </FormControl>
             <FormControl>
               <FormControl.Label _text={{
@@ -60,7 +71,13 @@ export default function AddBtn() {
               }}>
                 Description
               </FormControl.Label>
-              <Input rounded="sm" fontSize="xs" h="100" ref={descriptionInputRef} />
+              <Input
+                rounded="sm"
+                fontSize="xs"
+                h="100"
+                onChangeText={(text) => setDescriptionInputValue(text)}
+                value={descriptionInputValue}
+              />
             </FormControl>
           </Popover.Body>
           <Popover.Footer>
